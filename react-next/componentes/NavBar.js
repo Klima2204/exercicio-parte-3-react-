@@ -13,7 +13,7 @@ export default function NavBar() {
       <ul className="navList">
         <li><Link href="/">Início</Link></li>
         <li><Link href="/gnocchis">Gnocchi</Link></li>
-        <li><Link href="/">Pastas</Link></li>
+        <li><Link href="/Massas">Pastas</Link></li>
         <li><Link href="/">Bebidas</Link></li>
       </ul>
     </nav>
