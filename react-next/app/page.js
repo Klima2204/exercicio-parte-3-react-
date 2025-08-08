@@ -1,13 +1,10 @@
 "use client";
-
-import Apresentacao from "@/componentes/apresentacao";
-import NavBar from "@/componentes/NavBar";
+import Cardapio from "@/pages/Cardapio";
 
 export default function Home() {
   return (
     <div>
-      <NavBar />
-      <Apresentacao />
+      <Cardapio/>
     </div>
   );
 }
