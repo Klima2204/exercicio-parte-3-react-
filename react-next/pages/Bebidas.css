@@ -1,0 +1,13 @@
+.bebidas-container {
+  padding: 2rem;
+  font-family: sans-serif;
+}
+
+.categoria {
+  margin-bottom: 2rem;
+}
+
+.categoria h3 {
+  color: #c0392b;
+  margin-bottom: 1rem;
+}

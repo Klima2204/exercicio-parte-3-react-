@@ -14,7 +14,7 @@ export default function NavBar() {
         <li><Link href="/">Início</Link></li>
         <li><Link href="/gnocchis">Gnocchi</Link></li>
         <li><Link href="/Massas">Pastas</Link></li>
-        <li><Link href="/">Bebidas</Link></li>
+        <li><Link href="/Bebidas">Bebidas</Link></li>
       </ul>
     </nav>
   );
