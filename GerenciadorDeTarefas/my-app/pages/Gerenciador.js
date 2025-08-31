@@ -1,10 +1,21 @@
 "use client"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import NovaTarefa from '../components/NovaTarefa';
 import Tarefas from '../components/Tarefas';
 
 export default function Gerenciador() {
   const [tarefas, setTarefas] = useState([]);
+
+  useEffect(() => {
+    const tarefasSalvas = localStorage.getItem('tarefas');
+    if (tarefasSalvas) {
+      setTarefas(JSON.parse(tarefasSalvas));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('tarefas', JSON.stringify(tarefas));
+  }, [tarefas]);
 
   const adicionarTarefa = ({ descricao, periodo }) => {
     const novaTarefa = {
@@ -24,7 +35,7 @@ export default function Gerenciador() {
 
   return (
     <div style={{ padding: '2rem' }}>
-      <h1>Gerenciador de Tarefas</h1>
+      <h1>📋 Gerenciador de Tarefas</h1>
       <NovaTarefa onAdicionar={adicionarTarefa} />
       <Tarefas tarefas={tarefas} onToggleStatus={alternarStatus} />
     </div>
