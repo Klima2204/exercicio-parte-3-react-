@@ -13,7 +13,7 @@ export default function PlantCard({ plant }) {
   return (
     <div className={styles.card}>
       <div className={styles.header}>
-        <PlantIcon size="md" />
+        <PlantIcon/>
         <h2>{name}</h2>
       </div>
 
