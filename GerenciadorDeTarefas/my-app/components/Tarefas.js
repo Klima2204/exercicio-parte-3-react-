@@ -1,14 +1,39 @@
-export default function Tarefas({ tarefas }) {
-  const filtrarPorPeriodo = (periodo) => tarefas.filter(t => t.periodo === periodo);
-  const contarConcluidas = (lista) => lista.filter(t => t.status === 'concluída').length;
+export default function Tarefas({ tarefas, onToggleStatus }) {
+  const filtrarPorPeriodo = (periodo) =>
+    tarefas.filter((t) => t.periodo === periodo);
+
+  const contarConcluidas = (lista) =>
+    lista.filter((t) => t.status === 'concluída').length;
 
   const periodos = ['Manhã', 'Tarde', 'Noite'];
 
   const renderLista = (lista) => (
-    <ul>
-      {lista.map((tarefa, index) => (
-        <li key={index}>{tarefa.nome}</li>
-      ))}
+    <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
+      {lista.map((tarefa, indexGlobal) => {
+        const index = tarefas.findIndex(
+          (t) => t.nome === tarefa.nome && t.periodo === tarefa.periodo
+        );
+        const concluida = tarefa.status === 'concluída';
+
+        return (
+          <li key={indexGlobal} style={{ marginBottom: '0.5rem' }}>
+            <label style={{ display: 'flex', alignItems: 'center' }}>
+              <input
+                type="checkbox"
+                checked={concluida}
+                onChange={() => onToggleStatus(index)}
+                style={{ marginRight: '0.5rem' }}
+              />
+              <span
+                style={{
+                  textDecoration: concluida ? 'line-through' : 'none'}}
+              >
+                {tarefa.nome}
+              </span>
+            </label>
+          </li>
+        );
+      })}
     </ul>
   );
 
