@@ -1,11 +1,13 @@
+import BarraProgresso from './Progresso';
+
 export default function Tarefas({ tarefas, onToggleStatus }) {
+  const periodos = ['Manhã', 'Tarde', 'Noite'];
+
   const filtrarPorPeriodo = (periodo) =>
     tarefas.filter((t) => t.periodo === periodo);
 
   const contarConcluidas = (lista) =>
     lista.filter((t) => t.status === 'concluída').length;
-
-  const periodos = ['Manhã', 'Tarde', 'Noite'];
 
   const renderLista = (lista) => (
     <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
@@ -26,7 +28,8 @@ export default function Tarefas({ tarefas, onToggleStatus }) {
               />
               <span
                 style={{
-                  textDecoration: concluida ? 'line-through' : 'none'}}
+                  textDecoration: concluida ? 'line-through' : 'none'
+                }}
               >
                 {tarefa.nome}
               </span>
@@ -43,17 +46,22 @@ export default function Tarefas({ tarefas, onToggleStatus }) {
         {periodos.map((periodo) => {
           const lista = filtrarPorPeriodo(periodo);
           const concluidas = contarConcluidas(lista);
+
           return (
-            <div key={periodo}>
+            <div key={periodo} style={{ flex: 1 }}>
               <h3>
-                {periodo === 'Manhã'}
-                {periodo === 'Tarde'}
-                {periodo === 'Noite'} {periodo}
+                {periodo === 'Manhã' && '🌅'}
+                {periodo === 'Tarde' && '🌇'}
+                {periodo === 'Noite' && '🌃'} {periodo}
               </h3>
               {renderLista(lista)}
               <p>
                 ✅ <strong>{concluidas} de {lista.length} concluídas</strong>
               </p>
+              <BarraProgresso
+                totalTarefas={lista.length}
+                tarefasConcluidas={concluidas}
+              />
             </div>
           );
         })}
